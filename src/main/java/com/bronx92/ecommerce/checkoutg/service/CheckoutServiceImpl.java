@@ -20,6 +20,7 @@ public class CheckoutServiceImpl implements CheckoutService {
     public Optional<Checkout> create(CheckoutRequest checkoutRequest) {
         final Checkout checkout = Checkout.builder()
                 .code(UUID.randomUUID().toString())
+                .status(Checkout.Status.CREATED)
                 .build();
         return Optional.of(checkoutRepository.save(checkout));
     }

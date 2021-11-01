@@ -1,7 +1,9 @@
 package com.bronx92.ecommerce.checkoutg.resource;
 
+import com.bronx92.ecommerce.checkoutg.entity.Checkout;
 import com.bronx92.ecommerce.checkoutg.service.CheckoutService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,9 +19,12 @@ public class CheckoutResource {
     private final CheckoutService checkoutService;
 
     @PostMapping("/")
-    public ResponseEntity<Void> create(@RequestBody CheckoutRequest checkoutRequest) {
-        checkoutService.create(checkoutRequest);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<CheckoutResponse> create(@RequestBody CheckoutRequest checkoutRequest) {
+        final Checkout checkout = checkoutService.create(checkoutRequest).orElseThrow();
+        final CheckoutResponse checkoutResponse = CheckoutResponse.builder()
+                .code(checkout.getCode())
+                .build();
+        return ResponseEntity.status(HttpStatus.CREATED ).body(checkoutResponse);
     }
 
 }
