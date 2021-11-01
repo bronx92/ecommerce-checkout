@@ -1,7 +1,7 @@
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/checkout
+    url: jdbc:postgresql://localhost:5432/checkoutg
     username: admin
     password: admin
     driver-class-name: org.postgresql.Driver
@@ -33,8 +33,8 @@ spring:
               deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
               serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
       bindings:
-        checkout-created-output:
-          destination: streaming.ecommerce.checkout.created
+        checkoutg-created-output:
+          destination: streaming.ecommerce.checkoutg.created
           contentType: application/*+avro
           producer:
             use-native-encoding: true

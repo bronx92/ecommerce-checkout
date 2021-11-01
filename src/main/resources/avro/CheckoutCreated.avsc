@@ -1,7 +1,7 @@
 {
   "type": "record",
   "name": "CheckoutCreatedEvent",
-  "namespace": "com.bronx92.ecommerce.checkout.event",
+  "namespace": "com.bronx92.ecommerce.checkoutg.event",
   "fields": [
     {
       "name": "checkoutCode",
